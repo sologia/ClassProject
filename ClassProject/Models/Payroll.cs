@@ -8,7 +8,8 @@ namespace ClassProject.Models
 {
     public class Payroll
     {
-        public int PayrollId {  get; set; }
+        public int PayrollId { get; set; }
+                public int EmployeesId { get; set; }
         public ICollection<Employees> Employees { get; set; }
     }
 }
