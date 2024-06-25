@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SharedModels.Dto
 {
-    public class EmployesDto
+    public class EmployeeUpdateDto
     {
-        
+        [Required]
         public int EmployeeID { get; set; }
         [Required]
         public string? Cedula { get; set; }
