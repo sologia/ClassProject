@@ -100,7 +100,7 @@ namespace PayrolAPI.Controllers
             {
                 _logger.LogInformation($"Creando un nuevo Empleado con cedula: {createDto.Cedula}");
 
-                // Verificar si el estudiante ya existe
+   
                 var existingEmpleado = await _employeeRepo
                     .GetAsync(s => s.Cedula != null && s.Cedula.ToLower()
                     == createDto.Cedula.ToLower());
@@ -112,14 +112,13 @@ namespace PayrolAPI.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Verificar la validez del modelo
                 if (!ModelState.IsValid)
                 {
                     _logger.LogError("El modelo de estudiante no es válido.");
                     return BadRequest(ModelState);
                 }
 
-                // Crear el nuevo estudiante
+   
                 var newEmployee = _mapper.Map<Employee>(createDto);
 
                 await _employeeRepo.CreateAsync(newEmployee);
@@ -161,7 +160,7 @@ namespace PayrolAPI.Controllers
                     return NotFound("El empleado no existe.");
                 }
 
-                // Actualizar solo las propiedades necesarias del estudiante existente
+              
                 _mapper.Map(updateDto, existingEmployee);
 
                 await _employeeRepo.SaveChangesAsync();
