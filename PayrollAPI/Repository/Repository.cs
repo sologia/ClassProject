@@ -34,7 +34,7 @@ namespace PayrolAPI.Repository
 
         }
 
-        public async Task<bool> ExistisAsync(Expression<Func<T, bool>>? filter = null)
+        public async Task<bool> ExistsAsync(Expression<Func<T, bool>>? filter = null)
         {
             IQueryable<T> query = dbSet;
             if(filter != null)

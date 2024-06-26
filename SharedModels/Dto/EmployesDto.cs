@@ -53,11 +53,11 @@ namespace SharedModels.Dto
 
         [Required]
         public double SalarioNeto { get; set; }
-        [Required]
+        
         public int PayrollId { get; set; }
-        [Required]
+      
         public int DeductionID { get; set; }
-        [Required]
+        
         public int IncomeId { get; set; }
     }
 }

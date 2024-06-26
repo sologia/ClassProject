@@ -11,7 +11,7 @@ namespace PayrolAPI.Repository.IRepository
         Task<T> GetByIdAsync(int id);
         Task DeleteAsync(T entity);
         Task SaveChangesAsync();
-        Task<bool> ExistisAsync(Expression<Func<T, bool>>? filter = null);
+        Task<bool> ExistsAsync(Expression<Func<T, bool>>? filter = null);
         Task<IDbContextTransaction> BeginTransactionAsync();
     }
 }
