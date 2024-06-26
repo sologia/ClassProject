@@ -176,7 +176,7 @@ namespace PayrolAPI.Controllers
                 if (!employeeExists)
                 {
                     _logger.LogWarning($"El empleado con ID '{updateDto.EmployeeID}' no existe.");
-                    ModelState.AddModelError("EmpleadoNoExiste", "¡El estudiante no existe!");
+                    ModelState.AddModelError("EmpleadoNoExiste", "¡El empleado no existe!");
                     return BadRequest(ModelState);
                 }
 

@@ -9,7 +9,10 @@ namespace SharedModels
     public class Payroll
     {
         public int PayrollId {  get; set; }
-        public ICollection<Employee>? Employees { get; set; }
+        public DateOnly FechaPeriodo { get; set; }
+        public string Periodo {  get; set; }
+     
         public int EmployeeID {  get; set; }
+        public ICollection<Employee>? Employees { get; set; }
     }
 }

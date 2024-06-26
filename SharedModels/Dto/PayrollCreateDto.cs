@@ -11,5 +11,10 @@ namespace SharedModels.Dto
     {
         [Required]
         public int EmployeeID { get; set; }
+        [Required]
+        public DateOnly FechaPeriodo { get; set; }
+        [Required]
+        public string Periodo { get; set; }
+
     }
 }

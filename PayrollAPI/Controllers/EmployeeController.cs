@@ -15,11 +15,13 @@ namespace PayrolAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _employeeRepo;
+        private readonly IPayrollRepository _payrollRepo;
         private readonly ILogger<EmployeeController> _logger;
         private readonly IMapper _mapper;
-        public EmployeeController ( IEmployeeRepository employeeRepo, ILogger<EmployeeController> logger, IMapper mapper)
+        public EmployeeController ( IEmployeeRepository employeeRepo,IPayrollRepository payrollRepo ,ILogger<EmployeeController> logger, IMapper mapper)
         {
             _employeeRepo = employeeRepo;
+            _payrollRepo = payrollRepo;
             _logger = logger;
                 
             _mapper = mapper;
@@ -98,17 +100,25 @@ namespace PayrolAPI.Controllers
 
             try
             {
-                _logger.LogInformation($"Creando un nuevo Empleado con cedula: {createDto.Cedula}");
+                _logger.LogInformation($"Creando un nuevo Empleado para la nomina con ID: {createDto.PayrollId}");
+                var payrollExists = await _payrollRepo
+                    .ExistsAsync(s => s.PayrollId == createDto.PayrollId);
 
-   
+                if (!payrollExists)
+                {
+                    _logger.LogWarning($"La nomina con ID '{createDto.PayrollId}' no existe.");
+                    ModelState.AddModelError("EmpleadoNoExiste", "¡El empleado no existe!");
+                    return BadRequest(ModelState);
+                }
+
                 var existingEmpleado = await _employeeRepo
                     .GetAsync(s => s.Cedula != null && s.Cedula.ToLower()
                     == createDto.Cedula.ToLower());
 
                 if (existingEmpleado != null)
                 {
-                    _logger.LogWarning($"El empleado con cedula '{createDto.Cedula}' ya existe.");
-                    ModelState.AddModelError("NombreExiste", "¡El empleado con esa cedula ya existe!");
+                    _logger.LogWarning($"El empleado para la nomina con ID '{createDto.PayrollId}' ya existe.");
+                    ModelState.AddModelError("NombreExiste", "¡El empleado para esa nomina ya existe!");
                     return BadRequest(ModelState);
                 }
 
@@ -159,13 +169,21 @@ namespace PayrolAPI.Controllers
                     _logger.LogWarning($"No se encontró ningún empleado con ID: {id}");
                     return NotFound("El empleado no existe.");
                 }
+                var payrollExists = await _payrollRepo
+                   .ExistsAsync(s => s.PayrollId == updateDto.PayrollId);
 
-              
+                if (!payrollExists)
+                {
+                    _logger.LogWarning($"La nomina con ID '{updateDto.PayrollId}' no existe.");
+                    ModelState.AddModelError("NominaNoExiste", "¡La nomina no existe!");
+                    return BadRequest(ModelState);
+                }
+
                 _mapper.Map(updateDto, existingEmployee);
 
                 await _employeeRepo.SaveChangesAsync();
 
-                _logger.LogInformation($"Emplead con ID {id} actualizado correctamente.");
+                _logger.LogInformation($"Empleado con ID {id} actualizado correctamente.");
                 return NoContent();
             }
             catch (DbUpdateConcurrencyException ex)
@@ -185,7 +203,7 @@ namespace PayrolAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error al actualizar al empleaod con ID {id}: " +
+                _logger.LogError($"Error al actualizar al empleado con ID {id}: " +
                     $"{ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error interno del servidor al actualizar al empleado.");
