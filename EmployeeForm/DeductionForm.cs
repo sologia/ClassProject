@@ -31,7 +31,7 @@ namespace Payroll
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar los ingresos: {ex.Message}",
+                MessageBox.Show($"Error al cargar los egresos: {ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -44,7 +44,9 @@ namespace Payroll
             var newDeduction = new DeductionCreateDto
             {
                 EmployeeID = int.Parse(mskID.Text),
-                Salario = salario
+                Salario = salario,
+                TotalDeductions = await _apiClient.Deductions.CalculateTotal(int.Parse(mskID.Text))
+
             };
             try
             {
@@ -85,6 +87,7 @@ namespace Payroll
                     EmployeeID = int.Parse(mskID.Text),
                     INSS = _calculosRepo.CalcularINSS(salario),
                     IR = _calculosRepo.CalcularIR(salario, _calculosRepo.CalcularINSS(salario)),
+                    TotalDeductions = await _apiClient.Deductions.CalculateTotal(int.Parse(mskID.Text))
 
 
 

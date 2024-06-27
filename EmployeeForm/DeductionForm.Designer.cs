@@ -79,6 +79,7 @@
             dgvEgresos.Name = "dgvEgresos";
             dgvEgresos.ReadOnly = true;
             dgvEgresos.RowHeadersWidth = 51;
+            dgvEgresos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEgresos.Size = new Size(415, 358);
             dgvEgresos.TabIndex = 28;
             dgvEgresos.CellClick += dgvEgresos_CellClick;

@@ -45,8 +45,7 @@ namespace SharedModels.Dto
         public DateOnly Contratacion { get; set; }
         [Required]
         public DateOnly FinContratacion { get; set; }
-        [Required]
-        public int Salario { get; set; }
+      
         [Required]
         public bool Activo { get; set; }
 
@@ -54,9 +53,6 @@ namespace SharedModels.Dto
         public double SalarioNeto { get; set; }
         [Required]
         public int PayrollId { get; set; }
-        [Required]
-        public int DeductionID { get; set; }
-        [Required]
-        public int IncomeId { get; set; }
+       
     }
 }

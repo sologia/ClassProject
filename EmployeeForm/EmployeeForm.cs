@@ -47,7 +47,7 @@ namespace Payroll
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar los ingresos: {ex.Message}",
+                MessageBox.Show($"Error al cargar los empleados: {ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -84,6 +84,7 @@ namespace Payroll
                 SecondName = txtSecondNombre.Text,
                 Sexo = cmbSexo.Text,
                 Telefono = int.Parse(mskTelefono.Text)
+                
                 
 
 
@@ -172,7 +173,7 @@ namespace Payroll
         {
             if (dgvEmpleados.SelectedRows.Count > 0)
             {
-
+                IncomesForm incomesForm = new IncomesForm(_apiClient);
                 var selectedEmployees = (EmployesDto)dgvEmpleados.SelectedRows[0].DataBoundItem;
                 var updateEmployee = new EmployeeUpdateDto
                 {
@@ -193,7 +194,9 @@ namespace Payroll
                     SecondName = txtSecondNombre.Text,
                     Sexo = cmbSexo.Text,
                     Telefono = int.Parse(mskTelefono.Text),
-                    SalarioNeto = await _apiClient.Employees.CalculateTotal(selectedEmployees.EmployeeID)
+                    SalarioNeto = await _apiClient.Employees.CalculateTotal(selectedEmployees.EmployeeID),
+                 
+                    
 
 
 

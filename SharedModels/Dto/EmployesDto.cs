@@ -13,8 +13,7 @@ namespace SharedModels.Dto
         public int EmployeeID { get; set; }
         [Required]
         public string? Cedula { get; set; }
-        [Required]
-        public int INSS { get; set; }
+       
         [Required]
         public int RUC { get; set; }
         [Required]
@@ -46,8 +45,7 @@ namespace SharedModels.Dto
         public DateOnly Contratacion { get; set; }
         [Required]
         public DateOnly FinContratacion { get; set; }
-        [Required]
-        public int Salario { get; set; }
+       
         [Required]
         public bool Activo { get; set; }
 
@@ -56,8 +54,6 @@ namespace SharedModels.Dto
         
         public int PayrollId { get; set; }
       
-        public int DeductionID { get; set; }
-        
-        public int IncomeId { get; set; }
+       
     }
 }

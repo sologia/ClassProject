@@ -11,7 +11,9 @@ namespace SharedModels.Dto
     {
         [Required]
         public int EmployeeID { get; set; }
-        public double Salario { get; set; } 
+        public double Salario { get; set; }
+        [Required]
+        public double TotalDeductions { get; set; }
 
     }
 }

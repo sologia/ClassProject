@@ -36,6 +36,7 @@ namespace Payroll
             {
                 var incomes = await _apiClient.Incomes.GetAllAsync();
                 dgvIncomes.DataSource = incomes.ToList();
+                
             }
             catch (Exception ex)
             {
@@ -43,7 +44,7 @@ namespace Payroll
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        
         private async void btnCrear_Click(object sender, EventArgs e)
         {
             int antiguedad = int.Parse(txtAñosDeAntiguedad.Text);
@@ -204,7 +205,7 @@ namespace Payroll
                     Nocturnidad = buffer3,
                     RiesgoLaboral = buffer4,
                     AñosAntiguedad = int.Parse(txtAñosDeAntiguedad.Text),
-                    TotalIncomes = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text))
+                    TotalIncomes = await _apiClient.Incomes.CalculateTotal(selectedIncomes.EmployeeID)
 
 
 
@@ -223,8 +224,7 @@ namespace Payroll
                             "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearInputFields();
                         await LoadIncomesAsync();
-                        var total = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text));
-                        await LoadIncomesAsync();
+                        
                     }
                     else
                     {

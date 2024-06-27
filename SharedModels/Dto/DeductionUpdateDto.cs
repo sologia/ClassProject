@@ -17,5 +17,7 @@ namespace SharedModels.Dto
         public double INSS { get; set; }
         [Required]
         public double IR { get; set; }
+        [Required]
+        public double TotalDeductions { get; set; }
     }
 }

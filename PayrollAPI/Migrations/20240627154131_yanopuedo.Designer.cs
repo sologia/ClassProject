@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayrollAPI.Data;
 
@@ -11,9 +12,11 @@ using PayrollAPI.Data;
 namespace PayrolAPI.Migrations
 {
     [DbContext(typeof(PayrollContext))]
-    partial class PayrollContextModelSnapshot : ModelSnapshot
+    [Migration("20240627154131_yanopuedo")]
+    partial class yanopuedo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,8 +111,8 @@ namespace PayrolAPI.Migrations
                     b.Property<int>("RUC")
                         .HasColumnType("int");
 
-                    b.Property<double>("Salario")
-                        .HasColumnType("float");
+                    b.Property<int>("Salario")
+                        .HasColumnType("int");
 
                     b.Property<double>("SalarioNeto")
                         .HasColumnType("float");
