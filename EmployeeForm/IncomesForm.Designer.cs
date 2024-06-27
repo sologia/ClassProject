@@ -41,11 +41,11 @@
             txtRiesgoLaboral = new TextBox();
             mskAñosAntiguedad = new MaskedTextBox();
             label6 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvIncomes = new DataGridView();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvIncomes).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -173,14 +173,14 @@
             label6.Text = "Años Antiguedad";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // dataGridView1
+            // dgvIncomes
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 237);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(766, 233);
-            dataGridView1.TabIndex = 36;
+            dgvIncomes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvIncomes.Location = new Point(12, 237);
+            dgvIncomes.Name = "dgvIncomes";
+            dgvIncomes.RowHeadersWidth = 51;
+            dgvIncomes.Size = new Size(766, 233);
+            dgvIncomes.TabIndex = 36;
             // 
             // button3
             // 
@@ -217,7 +217,7 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvIncomes);
             Controls.Add(mskAñosAntiguedad);
             Controls.Add(label6);
             Controls.Add(txtRiesgoLaboral);
@@ -233,7 +233,8 @@
             Controls.Add(label2);
             Name = "IncomesForm";
             Text = "IncomesForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += IncomesForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvIncomes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -253,7 +254,7 @@
         private TextBox txtRiesgoLaboral;
         private MaskedTextBox mskAñosAntiguedad;
         private Label label6;
-        private DataGridView dataGridView1;
+        private DataGridView dgvIncomes;
         private Button button3;
         private Button button2;
         private Button button1;

@@ -119,6 +119,7 @@
             Controls.Add(label2);
             Name = "DeductionForm";
             Text = "DeductionForm";
+            Load += DeductionForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEgresos).EndInit();
             ResumeLayout(false);
             PerformLayout();

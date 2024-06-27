@@ -16,5 +16,10 @@ namespace Payroll
         {
             InitializeComponent();
         }
+
+        private void DeductionForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

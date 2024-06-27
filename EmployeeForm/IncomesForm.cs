@@ -12,9 +12,30 @@ namespace Payroll
 {
     public partial class IncomesForm : Form
     {
-        public IncomesForm()
+        private readonly ApiClient _apiClient;
+        public IncomesForm(ApiClient apiClient)
         {
             InitializeComponent();
+            _apiClient = apiClient;
+        }
+
+        private async void IncomesForm_Load(object sender, EventArgs e)
+        {
+            await LoadIncomesAsync();
+        }
+
+        private async Task LoadIncomesAsync()
+        {
+            try
+            {
+                var incomes = await _apiClient.Incomes.GetAllAsync();
+                dgvIncomes.DataSource = incomes.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los ingresos: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
