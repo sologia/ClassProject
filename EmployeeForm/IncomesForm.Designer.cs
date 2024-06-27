@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             label2 = new Label();
-            mskIDEmpleado = new MaskedTextBox();
+            txtIdEmpleado = new MaskedTextBox();
             label9 = new Label();
             label4 = new Label();
-            mskSalario = new MaskedTextBox();
-            mskHorasNocturnas = new MaskedTextBox();
+            txtSalario = new MaskedTextBox();
+            txtHorasNocturnas = new MaskedTextBox();
             label1 = new Label();
-            mskHorasExtras = new MaskedTextBox();
+            txtHorasExtras = new MaskedTextBox();
             label3 = new Label();
             label5 = new Label();
             txtRiesgoLaboral = new TextBox();
-            mskAñosAntiguedad = new MaskedTextBox();
+            txtAñosDeAntiguedad = new MaskedTextBox();
             label6 = new Label();
             dgvIncomes = new DataGridView();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnEliminar = new Button();
+            btnCrear = new Button();
+            btnActualizar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvIncomes).BeginInit();
             SuspendLayout();
             // 
@@ -59,13 +59,13 @@
             label2.Text = "INGRESOS";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
-            // mskIDEmpleado
+            // txtIdEmpleado
             // 
-            mskIDEmpleado.Location = new Point(135, 59);
-            mskIDEmpleado.Mask = "000";
-            mskIDEmpleado.Name = "mskIDEmpleado";
-            mskIDEmpleado.Size = new Size(26, 27);
-            mskIDEmpleado.TabIndex = 25;
+            txtIdEmpleado.Location = new Point(135, 59);
+            txtIdEmpleado.Mask = "000";
+            txtIdEmpleado.Name = "txtIdEmpleado";
+            txtIdEmpleado.Size = new Size(26, 27);
+            txtIdEmpleado.TabIndex = 25;
             // 
             // label9
             // 
@@ -89,21 +89,21 @@
             label4.Text = "Salario 0rdinario";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
-            // mskSalario
+            // txtSalario
             // 
-            mskSalario.Location = new Point(364, 56);
-            mskSalario.Mask = "00000000000";
-            mskSalario.Name = "mskSalario";
-            mskSalario.Size = new Size(75, 27);
-            mskSalario.TabIndex = 27;
+            txtSalario.Location = new Point(364, 56);
+            txtSalario.Mask = "00000000000";
+            txtSalario.Name = "txtSalario";
+            txtSalario.Size = new Size(75, 27);
+            txtSalario.TabIndex = 27;
             // 
-            // mskHorasNocturnas
+            // txtHorasNocturnas
             // 
-            mskHorasNocturnas.Location = new Point(711, 56);
-            mskHorasNocturnas.Mask = "000";
-            mskHorasNocturnas.Name = "mskHorasNocturnas";
-            mskHorasNocturnas.Size = new Size(26, 27);
-            mskHorasNocturnas.TabIndex = 29;
+            txtHorasNocturnas.Location = new Point(711, 56);
+            txtHorasNocturnas.Mask = "000";
+            txtHorasNocturnas.Name = "txtHorasNocturnas";
+            txtHorasNocturnas.Size = new Size(26, 27);
+            txtHorasNocturnas.TabIndex = 29;
             // 
             // label1
             // 
@@ -116,13 +116,13 @@
             label1.Text = "Cantidad Horas Nocturnas";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // mskHorasExtras
+            // txtHorasExtras
             // 
-            mskHorasExtras.Location = new Point(236, 100);
-            mskHorasExtras.Mask = "000";
-            mskHorasExtras.Name = "mskHorasExtras";
-            mskHorasExtras.Size = new Size(26, 27);
-            mskHorasExtras.TabIndex = 31;
+            txtHorasExtras.Location = new Point(236, 100);
+            txtHorasExtras.Mask = "000";
+            txtHorasExtras.Name = "txtHorasExtras";
+            txtHorasExtras.Size = new Size(26, 27);
+            txtHorasExtras.TabIndex = 31;
             // 
             // label3
             // 
@@ -154,13 +154,13 @@
             txtRiesgoLaboral.Size = new Size(145, 27);
             txtRiesgoLaboral.TabIndex = 33;
             // 
-            // mskAñosAntiguedad
+            // txtAñosDeAntiguedad
             // 
-            mskAñosAntiguedad.Location = new Point(752, 97);
-            mskAñosAntiguedad.Mask = "000";
-            mskAñosAntiguedad.Name = "mskAñosAntiguedad";
-            mskAñosAntiguedad.Size = new Size(26, 27);
-            mskAñosAntiguedad.TabIndex = 35;
+            txtAñosDeAntiguedad.Location = new Point(752, 97);
+            txtAñosDeAntiguedad.Mask = "000";
+            txtAñosDeAntiguedad.Name = "txtAñosDeAntiguedad";
+            txtAñosDeAntiguedad.Size = new Size(26, 27);
+            txtAñosDeAntiguedad.TabIndex = 35;
             // 
             // label6
             // 
@@ -181,54 +181,58 @@
             dgvIncomes.RowHeadersWidth = 51;
             dgvIncomes.Size = new Size(766, 233);
             dgvIncomes.TabIndex = 36;
+            dgvIncomes.CellClick += dgvIncomes_CellClick;
             // 
-            // button3
+            // btnEliminar
             // 
-            button3.Location = new Point(679, 179);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 44;
-            button3.Text = "Eliminar";
-            button3.UseVisualStyleBackColor = true;
+            btnEliminar.Location = new Point(679, 179);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.TabIndex = 44;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
-            // button2
+            // btnCrear
             // 
-            button2.Location = new Point(445, 179);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 43;
-            button2.Text = "Crear";
-            button2.UseVisualStyleBackColor = true;
+            btnCrear.Location = new Point(445, 179);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(94, 29);
+            btnCrear.TabIndex = 43;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
             // 
-            // button1
+            // btnActualizar
             // 
-            button1.Location = new Point(559, 179);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 29);
-            button1.TabIndex = 42;
-            button1.Text = "Actualizar";
-            button1.UseVisualStyleBackColor = true;
+            btnActualizar.Location = new Point(559, 179);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(97, 29);
+            btnActualizar.TabIndex = 42;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // IncomesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 513);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnCrear);
+            Controls.Add(btnActualizar);
             Controls.Add(dgvIncomes);
-            Controls.Add(mskAñosAntiguedad);
+            Controls.Add(txtAñosDeAntiguedad);
             Controls.Add(label6);
             Controls.Add(txtRiesgoLaboral);
             Controls.Add(label5);
-            Controls.Add(mskHorasExtras);
+            Controls.Add(txtHorasExtras);
             Controls.Add(label3);
-            Controls.Add(mskHorasNocturnas);
+            Controls.Add(txtHorasNocturnas);
             Controls.Add(label1);
-            Controls.Add(mskSalario);
+            Controls.Add(txtSalario);
             Controls.Add(label4);
-            Controls.Add(mskIDEmpleado);
+            Controls.Add(txtIdEmpleado);
             Controls.Add(label9);
             Controls.Add(label2);
             Name = "IncomesForm";
@@ -242,21 +246,21 @@
         #endregion
 
         private Label label2;
-        private MaskedTextBox mskIDEmpleado;
+        private MaskedTextBox txtIdEmpleado;
         private Label label9;
         private Label label4;
-        private MaskedTextBox mskSalario;
-        private MaskedTextBox mskHorasNocturnas;
+        private MaskedTextBox txtSalario;
+        private MaskedTextBox txtHorasNocturnas;
         private Label label1;
-        private MaskedTextBox mskHorasExtras;
+        private MaskedTextBox txtHorasExtras;
         private Label label3;
         private Label label5;
         private TextBox txtRiesgoLaboral;
-        private MaskedTextBox mskAñosAntiguedad;
+        private MaskedTextBox txtAñosDeAntiguedad;
         private Label label6;
         private DataGridView dgvIncomes;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btnEliminar;
+        private Button btnCrear;
+        private Button btnActualizar;
     }
 }

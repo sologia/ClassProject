@@ -6,11 +6,23 @@ namespace PayrolAPI.Repository
     {
         public double CalcularAntiguedad(int Antiguedad, Double Salariobasico)
         {
-            double buffer;
-
-
-            buffer = ((Antiguedad) / 100) * Salariobasico;
-
+            double buffer =0;
+            if (Antiguedad <= 3 && Antiguedad > 0)
+            {
+                buffer = Salariobasico * Antiguedad;
+                return buffer;
+            }
+            else
+                if(Antiguedad > 3)
+            {
+                if (Antiguedad > 5)
+                {
+                    Antiguedad = 5;
+                   
+                }
+                buffer = (Salariobasico / 30) * 20 * Antiguedad;
+                return buffer;
+            }
             return buffer;
         }
 
