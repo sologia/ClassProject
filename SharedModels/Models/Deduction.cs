@@ -14,7 +14,7 @@ namespace SharedModels
 
         public double INSS {  get; set; }
         public double IR {  get; set; }
-        public double Deductions { get; set; }
+        public double TotalDeductions { get; set; }
         public Employee? Employees { get; set; }
     }
 }
