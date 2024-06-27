@@ -26,7 +26,5 @@ namespace SharedModels.Dto
         [Required]
         public int CntdHorasExtras { get; set; }
         //Salario que incluye horas extras 
-        [Required]
-        public double SalarioExtraOrdinario { get; set; }
     }
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SharedModels.Dto
 {
-    public class DeductionCreateDto
+    public class DeductionCalculateDto
     {
-        [Required]
         public int EmployeeID { get; set; }
-        public double Salario { get; set; } 
+
+        public double INSS { get; set; }
+        public double IR { get; set; }
 
     }
 }

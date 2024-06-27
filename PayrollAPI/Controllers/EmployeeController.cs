@@ -144,6 +144,21 @@ namespace PayrolAPI.Controllers
                     "Error interno del servidor al crear un nuevo empleado.");
             }
         }
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpGet("CalculateSalarioNeto/{employeeId}")]
+        public async Task<IActionResult> CalculateNetSalary(int employeeId)
+        {
+
+                var netSalary = await _employeeRepo.CalculateNetSalaryAsync(employeeId);
+                return Ok(netSalary);
+            
+     
+    
+        }
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

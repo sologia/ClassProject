@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PayrolAPI.Repository;
 using PayrolAPI.Repository.IRepository;
 using SharedModels;
 using SharedModels.Dto;
@@ -141,6 +142,24 @@ namespace PayrolAPI.Controllers
                 _logger.LogError($"Error al crear un nuevo ingreso: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error interno del servidor al crear un nuevo ingreso.");
+            }
+        }
+        [HttpGet("CalculateTotalIncome/{employeeId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> CalculateTotalIncome(int employeeId)
+        {
+            try
+            {
+                var totalIncome = await _incomeRepo.CalculateTotalIncomeAsync(employeeId);
+                return Ok(totalIncome);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al calcular el salario bruto: {ex.Message}");
             }
         }
 

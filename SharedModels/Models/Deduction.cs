@@ -10,8 +10,11 @@ namespace SharedModels
     {
         public int DeductionID { get; set; }
         public int EmployeeID { get; set; }
+        public double Salario { get; set; }
+
         public double INSS {  get; set; }
         public double IR {  get; set; }
+        public double Deductions { get; set; }
         public Employee? Employees { get; set; }
     }
 }

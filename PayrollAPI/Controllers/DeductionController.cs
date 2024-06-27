@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PayrolAPI.Repository.IRepository;
 using SharedModels.Dto;
 using SharedModels;
+using PayrolAPI.Repository;
 
 namespace PayrolAPI.Controllers
 {
@@ -142,6 +143,29 @@ namespace PayrolAPI.Controllers
                 _logger.LogError($"Error al crear un nuevo egreso: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error interno del servidor al crear un nuevo egreso.");
+            }
+        }
+        [HttpGet("CalculateTotalDeductions/{employeeId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> CalculateDeductions(int employeeId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _deductionRepo.CalculateTotalDeductionAsync(employeeId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al calcular deducciones: {ex.Message}");
             }
         }
 

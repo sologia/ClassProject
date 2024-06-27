@@ -6,5 +6,7 @@ namespace PayrolAPI.Repository.IRepository
     {
    
         Task<Employee> UpdateAsync(Employee entity);
+        Task<double> CalculateNetSalaryAsync(int employeeId);
+
     }
 }

@@ -49,7 +49,7 @@ namespace SharedModels.Dto
         [Required]
         public bool Activo { get; set; }
 
-
+        
         public int PayrollId { get; set; }
     }
 }
