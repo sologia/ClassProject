@@ -1,4 +1,5 @@
 ﻿using PayrolAPI.Repository;
+using PayrollAPI.Data;
 using SharedModels;
 using SharedModels.Dto;
 using System;
@@ -17,8 +18,9 @@ namespace Payroll
     public partial class EmployeeForm : Form
     {
         private readonly ApiClient _apiClient;
+        
         private CalculosRepository _calculosRepo = new CalculosRepository();
-
+       
         public EmployeeForm(ApiClient apiClient)
         {
             InitializeComponent();
@@ -58,7 +60,7 @@ namespace Payroll
 
         private void btnDeducciones_Click(object sender, EventArgs e)
         {
-            DeductionForm deductionForm = new DeductionForm();
+            DeductionForm deductionForm = new DeductionForm(_apiClient);
             deductionForm.ShowDialog();
         }
 
@@ -230,6 +232,11 @@ namespace Payroll
                 MessageBox.Show("Seleccione un empleado para actualizar.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+        public async Task<double> funcion(int id)
+        {
+            
+            return await _apiClient.Employees.CalculateTotal(id);
         }
 
         private void dgvEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
