@@ -1,6 +1,6 @@
 ﻿namespace PayrolAPI.Repository.IRepository
 {
-    public interface CalculosIRepository
+    public interface ICalculosIRepository
     {
         public double CalcularHorasextra(double Salariobasico, int Horasextra);
         public double CalcularAntiguedad(int Antiguedad, double Salariobasico);

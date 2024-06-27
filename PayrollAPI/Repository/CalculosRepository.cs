@@ -2,7 +2,7 @@
 
 namespace PayrolAPI.Repository
 {
-    public class CalculosRepository : CalculosIRepository
+    public class CalculosRepository : ICalculosIRepository
     {
         public double CalcularAntiguedad(int Antiguedad, Double Salariobasico)
         {

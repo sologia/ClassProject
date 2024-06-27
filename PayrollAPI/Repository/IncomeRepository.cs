@@ -9,7 +9,7 @@ namespace PayrolAPI.Repository
     public class IncomeRepository : Repository<Income>, IIncomeRepository
     {
         private readonly PayrollContext _context;
-        private readonly CalculosIRepository _calculos;
+        private readonly ICalculosIRepository _calculos;
 
         public IncomeRepository(PayrollContext context) : base(context)
         {
