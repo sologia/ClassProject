@@ -12,9 +12,11 @@ namespace Payroll
 {
     public partial class EmployeeForm : Form
     {
-        public EmployeeForm()
+        private readonly ApiClient _apiClient;
+        public EmployeeForm(ApiClient apiClient)
         {
             InitializeComponent();
+            _apiClient = apiClient;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -29,7 +31,7 @@ namespace Payroll
 
         private void button5_Click(object sender, EventArgs e)
         {
-            IncomesForm incomesForm = new IncomesForm();
+            IncomesForm incomesForm = new IncomesForm(_apiClient);
             incomesForm.ShowDialog();
         }
 

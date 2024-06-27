@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PayrolAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class ini : Migration
+    public partial class inis : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,8 +72,10 @@ namespace PayrolAPI.Migrations
                     DeductionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    Salario = table.Column<double>(type: "float", nullable: false),
                     INSS = table.Column<double>(type: "float", nullable: false),
-                    IR = table.Column<double>(type: "float", nullable: false)
+                    IR = table.Column<double>(type: "float", nullable: false),
+                    TotalDeductions = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,10 +97,13 @@ namespace PayrolAPI.Migrations
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
                     SalarioOrdinario = table.Column<double>(type: "float", nullable: false),
                     RiesgoLaboral = table.Column<double>(type: "float", nullable: false),
+                    AñosAntiguedad = table.Column<int>(type: "int", nullable: false),
                     Antiguedad = table.Column<double>(type: "float", nullable: false),
+                    CntdHorasNocturnas = table.Column<int>(type: "int", nullable: false),
                     Nocturnidad = table.Column<double>(type: "float", nullable: false),
                     CntdHorasExtras = table.Column<int>(type: "int", nullable: false),
-                    SalarioExtraOrdinario = table.Column<double>(type: "float", nullable: false)
+                    SalarioExtraOrdinario = table.Column<double>(type: "float", nullable: false),
+                    TotalIncomes = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

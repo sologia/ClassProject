@@ -12,8 +12,8 @@ using PayrollAPI.Data;
 namespace PayrolAPI.Migrations
 {
     [DbContext(typeof(PayrollContext))]
-    [Migration("20240626153119_ini")]
-    partial class ini
+    [Migration("20240627080051_inis")]
+    partial class inis
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,12 @@ namespace PayrolAPI.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("IR")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Salario")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalDeductions")
                         .HasColumnType("float");
 
                     b.HasKey("DeductionID");
@@ -138,7 +144,13 @@ namespace PayrolAPI.Migrations
                     b.Property<double>("Antiguedad")
                         .HasColumnType("float");
 
+                    b.Property<int>("AñosAntiguedad")
+                        .HasColumnType("int");
+
                     b.Property<int>("CntdHorasExtras")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CntdHorasNocturnas")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeID")
@@ -154,6 +166,9 @@ namespace PayrolAPI.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("SalarioOrdinario")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalIncomes")
                         .HasColumnType("float");
 
                     b.HasKey("IncomeId");

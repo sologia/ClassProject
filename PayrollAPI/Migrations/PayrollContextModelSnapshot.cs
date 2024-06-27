@@ -39,6 +39,12 @@ namespace PayrolAPI.Migrations
                     b.Property<double>("IR")
                         .HasColumnType("float");
 
+                    b.Property<double>("Salario")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalDeductions")
+                        .HasColumnType("float");
+
                     b.HasKey("DeductionID");
 
                     b.HasIndex("EmployeeID");
@@ -135,7 +141,13 @@ namespace PayrolAPI.Migrations
                     b.Property<double>("Antiguedad")
                         .HasColumnType("float");
 
+                    b.Property<int>("AñosAntiguedad")
+                        .HasColumnType("int");
+
                     b.Property<int>("CntdHorasExtras")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CntdHorasNocturnas")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeID")
@@ -151,6 +163,9 @@ namespace PayrolAPI.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("SalarioOrdinario")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalIncomes")
                         .HasColumnType("float");
 
                     b.HasKey("IncomeId");

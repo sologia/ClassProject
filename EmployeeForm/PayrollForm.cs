@@ -12,14 +12,16 @@ namespace Payroll
 {
     public partial class PayrollForm : Form
     {
-        public PayrollForm()
+        private readonly ApiClient _apiClient;
+        public PayrollForm(ApiClient apiClient)
         {
             InitializeComponent();
+            _apiClient = apiClient;
         }
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
-            EmployeeForm employeeForm = new EmployeeForm();
+            EmployeeForm employeeForm = new EmployeeForm(_apiClient);
             employeeForm.ShowDialog();
         }
 
