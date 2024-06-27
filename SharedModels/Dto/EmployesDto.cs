@@ -9,7 +9,7 @@ namespace SharedModels.Dto
 {
     public class EmployesDto
     {
-        
+        [Required]
         public int EmployeeID { get; set; }
         [Required]
         public string? Cedula { get; set; }

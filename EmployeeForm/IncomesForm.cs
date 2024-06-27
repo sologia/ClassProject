@@ -105,8 +105,8 @@ namespace Payroll
         {
             txtAñosDeAntiguedad.Clear();
             txtHorasExtras.Clear();
-          cmbRiesgoLaboral.Items.Clear();
-            cmbNocturnidad.Items.Clear();
+          cmbRiesgoLaboral.ResetText();
+            cmbNocturnidad.ResetText();
             txtIdEmpleado.Clear();
          
             txtSalario.Clear();
@@ -124,7 +124,7 @@ namespace Payroll
                 txtHorasExtras.Text = income.CntdHorasExtras.ToString();
                
                 txtIdEmpleado.Text = income.EmployeeID.ToString();
-             
+                
                 txtSalario.Text = income.SalarioOrdinario.ToString();
             }
         }
@@ -231,14 +231,14 @@ namespace Payroll
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al actualizar estudiante: {ex.Message}",
+                    MessageBox.Show($"Error al actualizar ingreso: {ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             else
             {
-                MessageBox.Show("Seleccione un estudiante para actualizar.",
+                MessageBox.Show("Seleccione un ingreso para actualizar.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

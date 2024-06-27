@@ -13,8 +13,7 @@ namespace SharedModels.Dto
         public int EmployeeID { get; set; }
         [Required]
         public string? Cedula { get; set; }
-        [Required]
-        public int INSS { get; set; }
+       
         [Required]
         public int RUC { get; set; }
         [Required]
