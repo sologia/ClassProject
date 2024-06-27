@@ -19,16 +19,16 @@ namespace SharedModels.Dto
         public int AñosAntiguedad { get; set; }
         [Required]
         public double Antiguedad { get; set; }
-        [Required]
-        public int CntdHorasNocturnas { get; set; }
+      
         [Required]
         public double Nocturnidad { get; set; }
         [Required]
         public int CntdHorasExtras { get; set; }
         //Salario que incluye horas extras 
         [Required]
-     
-        
         public double SalarioExtraOrdinario { get; set; }
+   
+       
+
     }
 }

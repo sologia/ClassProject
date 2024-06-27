@@ -99,5 +99,21 @@ namespace Payroll
                 throw new Exception(errorResponse);
             }
         }
+     
+
+        public async Task<double> CalculateTotal(int id)
+        {
+            var response = await _httpClient.GetAsync($"{_endpoint}/CalculateTotal{_endpoint}/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<double>(content);
+            }
+            else
+            {
+                var errorResponse = await response.Content.ReadAsStringAsync();
+                throw new Exception(errorResponse);
+            }
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace PayrolAPI.Repository
                     SalarioOrdinario = incomeDto.SalarioOrdinario,
                     RiesgoLaboral = incomeDto.RiesgoLaboral,
                     Antiguedad = _calculos.CalcularAntiguedad(incomeDto.AñosAntiguedad, incomeDto.SalarioOrdinario),
-                    Nocturnidad = _calculos.CalcularNocturnidad(incomeDto.CntdHorasNocturnas, incomeDto.Nocturnidad),
+                    Nocturnidad = incomeDto.Nocturnidad,
                     CntdHorasExtras = incomeDto.CntdHorasExtras,
                     SalarioExtraOrdinario = _calculos.CalcularHorasextra(incomeDto.SalarioOrdinario, incomeDto.CntdHorasExtras)
                 };

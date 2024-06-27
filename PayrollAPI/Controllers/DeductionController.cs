@@ -146,7 +146,7 @@ namespace PayrolAPI.Controllers
                     "Error interno del servidor al crear un nuevo egreso.");
             }
         }
-        [HttpGet("CalculateTotalDeductions/{employeeId}")]
+        [HttpGet("CalculateTotalDeduction/{employeeId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

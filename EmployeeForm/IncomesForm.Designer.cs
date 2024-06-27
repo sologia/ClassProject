@@ -33,18 +33,18 @@
             label9 = new Label();
             label4 = new Label();
             txtSalario = new MaskedTextBox();
-            txtHorasNocturnas = new MaskedTextBox();
             label1 = new Label();
             txtHorasExtras = new MaskedTextBox();
             label3 = new Label();
             label5 = new Label();
-            txtRiesgoLaboral = new TextBox();
             txtAñosDeAntiguedad = new MaskedTextBox();
             label6 = new Label();
             dgvIncomes = new DataGridView();
             btnEliminar = new Button();
             btnCrear = new Button();
             btnActualizar = new Button();
+            cmbNocturnidad = new ComboBox();
+            cmbRiesgoLaboral = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvIncomes).BeginInit();
             SuspendLayout();
             // 
@@ -97,23 +97,15 @@
             txtSalario.Size = new Size(75, 27);
             txtSalario.TabIndex = 27;
             // 
-            // txtHorasNocturnas
-            // 
-            txtHorasNocturnas.Location = new Point(711, 56);
-            txtHorasNocturnas.Mask = "000";
-            txtHorasNocturnas.Name = "txtHorasNocturnas";
-            txtHorasNocturnas.Size = new Size(26, 27);
-            txtHorasNocturnas.TabIndex = 29;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(455, 60);
+            label1.Location = new Point(491, 60);
             label1.Name = "label1";
-            label1.Size = new Size(254, 20);
+            label1.Size = new Size(126, 20);
             label1.TabIndex = 28;
-            label1.Text = "Cantidad Horas Nocturnas";
+            label1.Text = "Nocturnidad";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // txtHorasExtras
@@ -145,14 +137,6 @@
             label5.TabIndex = 32;
             label5.Text = "Riesgo Laboral";
             label5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // txtRiesgoLaboral
-            // 
-            txtRiesgoLaboral.Location = new Point(434, 100);
-            txtRiesgoLaboral.Multiline = true;
-            txtRiesgoLaboral.Name = "txtRiesgoLaboral";
-            txtRiesgoLaboral.Size = new Size(145, 27);
-            txtRiesgoLaboral.TabIndex = 33;
             // 
             // txtAñosDeAntiguedad
             // 
@@ -213,22 +197,42 @@
             btnActualizar.UseVisualStyleBackColor = true;
             btnActualizar.Click += btnActualizar_Click;
             // 
+            // cmbNocturnidad
+            // 
+            cmbNocturnidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbNocturnidad.FormattingEnabled = true;
+            cmbNocturnidad.Items.AddRange(new object[] { "Si", "No" });
+            cmbNocturnidad.Location = new Point(638, 52);
+            cmbNocturnidad.Name = "cmbNocturnidad";
+            cmbNocturnidad.Size = new Size(98, 28);
+            cmbNocturnidad.TabIndex = 45;
+            // 
+            // cmbRiesgoLaboral
+            // 
+            cmbRiesgoLaboral.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRiesgoLaboral.FormattingEnabled = true;
+            cmbRiesgoLaboral.Items.AddRange(new object[] { "Si", "No" });
+            cmbRiesgoLaboral.Location = new Point(434, 100);
+            cmbRiesgoLaboral.Name = "cmbRiesgoLaboral";
+            cmbRiesgoLaboral.Size = new Size(98, 28);
+            cmbRiesgoLaboral.TabIndex = 46;
+            // 
             // IncomesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 513);
+            Controls.Add(cmbRiesgoLaboral);
+            Controls.Add(cmbNocturnidad);
             Controls.Add(btnEliminar);
             Controls.Add(btnCrear);
             Controls.Add(btnActualizar);
             Controls.Add(dgvIncomes);
             Controls.Add(txtAñosDeAntiguedad);
             Controls.Add(label6);
-            Controls.Add(txtRiesgoLaboral);
             Controls.Add(label5);
             Controls.Add(txtHorasExtras);
             Controls.Add(label3);
-            Controls.Add(txtHorasNocturnas);
             Controls.Add(label1);
             Controls.Add(txtSalario);
             Controls.Add(label4);
@@ -250,17 +254,17 @@
         private Label label9;
         private Label label4;
         private MaskedTextBox txtSalario;
-        private MaskedTextBox txtHorasNocturnas;
         private Label label1;
         private MaskedTextBox txtHorasExtras;
         private Label label3;
         private Label label5;
-        private TextBox txtRiesgoLaboral;
         private MaskedTextBox txtAñosDeAntiguedad;
         private Label label6;
         private DataGridView dgvIncomes;
         private Button btnEliminar;
         private Button btnCrear;
         private Button btnActualizar;
+        private ComboBox cmbNocturnidad;
+        private ComboBox cmbRiesgoLaboral;
     }
 }

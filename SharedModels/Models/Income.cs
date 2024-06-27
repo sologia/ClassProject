@@ -16,11 +16,11 @@ namespace SharedModels
         public int AñosAntiguedad { get; set; } 
         public double Antiguedad { get; set; }
         //+20% del salario Basico
-        public int CntdHorasNocturnas { get; set; }
+    
 
         public double Nocturnidad { get; set; }
         public int CntdHorasExtras { get; set; }
-        public int CntdAñosAntiguedad { get; set; }
+        
         //Salario que incluye horas extras 
         public double SalarioExtraOrdinario { get; set; }
         public double TotalIncomes {  get; set; }

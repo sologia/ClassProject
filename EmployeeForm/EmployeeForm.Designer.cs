@@ -64,6 +64,8 @@
             dgvEmpleados = new DataGridView();
             btnDeducciones = new Button();
             btnIngresos = new Button();
+            label16 = new Label();
+            txtCedula = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvEmpleados).BeginInit();
             SuspendLayout();
             // 
@@ -230,7 +232,7 @@
             // mskCelular
             // 
             mskCelular.Location = new Point(465, 66);
-            mskCelular.Mask = "0000-0000";
+            mskCelular.Mask = "00000000";
             mskCelular.Name = "mskCelular";
             mskCelular.Size = new Size(62, 27);
             mskCelular.TabIndex = 23;
@@ -238,7 +240,7 @@
             // mskTelefono
             // 
             mskTelefono.Location = new Point(629, 63);
-            mskTelefono.Mask = "0000-0000";
+            mskTelefono.Mask = "00000000";
             mskTelefono.Name = "mskTelefono";
             mskTelefono.Size = new Size(62, 27);
             mskTelefono.TabIndex = 25;
@@ -371,7 +373,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(716, 210);
+            btnEliminar.Location = new Point(465, 280);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(94, 29);
             btnEliminar.TabIndex = 41;
@@ -380,16 +382,17 @@
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(482, 210);
+            btnCrear.Location = new Point(181, 280);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(94, 29);
             btnCrear.TabIndex = 40;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(596, 210);
+            btnActualizar.Location = new Point(324, 280);
             btnActualizar.Name = "btnActualizar";
             btnActualizar.Size = new Size(97, 29);
             btnActualizar.TabIndex = 39;
@@ -399,15 +402,15 @@
             // dgvEmpleados
             // 
             dgvEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmpleados.Location = new Point(12, 285);
+            dgvEmpleados.Location = new Point(12, 326);
             dgvEmpleados.Name = "dgvEmpleados";
             dgvEmpleados.RowHeadersWidth = 51;
-            dgvEmpleados.Size = new Size(1096, 245);
+            dgvEmpleados.Size = new Size(1096, 204);
             dgvEmpleados.TabIndex = 42;
             // 
             // btnDeducciones
             // 
-            btnDeducciones.Location = new Point(940, 210);
+            btnDeducciones.Location = new Point(766, 280);
             btnDeducciones.Name = "btnDeducciones";
             btnDeducciones.Size = new Size(109, 29);
             btnDeducciones.TabIndex = 44;
@@ -417,7 +420,7 @@
             // 
             // btnIngresos
             // 
-            btnIngresos.Location = new Point(823, 210);
+            btnIngresos.Location = new Point(611, 280);
             btnIngresos.Name = "btnIngresos";
             btnIngresos.Size = new Size(97, 29);
             btnIngresos.TabIndex = 43;
@@ -425,11 +428,32 @@
             btnIngresos.UseVisualStyleBackColor = true;
             btnIngresos.Click += button5_Click;
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Stencil", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.Location = new Point(499, 215);
+            label16.Name = "label16";
+            label16.Size = new Size(72, 20);
+            label16.TabIndex = 45;
+            label16.Text = "Cedula";
+            label16.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // txtCedula
+            // 
+            txtCedula.Location = new Point(588, 215);
+            txtCedula.Multiline = true;
+            txtCedula.Name = "txtCedula";
+            txtCedula.Size = new Size(329, 34);
+            txtCedula.TabIndex = 46;
+            // 
             // EmployeeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1117, 542);
+            Controls.Add(txtCedula);
+            Controls.Add(label16);
             Controls.Add(btnDeducciones);
             Controls.Add(btnIngresos);
             Controls.Add(dgvEmpleados);
@@ -477,7 +501,7 @@
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+           
         }
 
         #endregion
@@ -518,5 +542,7 @@
         private DataGridView dgvEmpleados;
         private Button btnDeducciones;
         private Button btnIngresos;
+        private Label label16;
+        private TextBox txtCedula;
     }
 }

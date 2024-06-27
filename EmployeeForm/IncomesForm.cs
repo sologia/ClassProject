@@ -17,7 +17,8 @@ namespace Payroll
     public partial class IncomesForm : Form
     {
         private readonly ApiClient _apiClient;
-        private readonly CalculosRepository _calculosRepo;
+        public CalculosRepository _calculosRepo = new CalculosRepository();
+     
         public IncomesForm(ApiClient apiClient)
         {
             InitializeComponent();
@@ -46,30 +47,51 @@ namespace Payroll
         private async void btnCrear_Click(object sender, EventArgs e)
         {
             int antiguedad = int.Parse(txtAñosDeAntiguedad.Text);
-            int salario = int.Parse(txtSalario.Text);
+            double salario = int.Parse(txtSalario.Text);
             int horasextras = int.Parse(txtHorasExtras.Text);
-            int horasNoctu = int.Parse(txtHorasNocturnas.Text);
+          
+            double buffe1 = _calculosRepo.CalcularAntiguedad(antiguedad, salario);
+            double buffer2 = _calculosRepo.CalcularHorasextra(salario, horasextras);
+            double buffer3;
+         if(cmbNocturnidad.Text.ToLower() == "si")
+            {
+                buffer3 = salario * 0.2;
+            }
+         else { buffer3 = 0; }
+            double buffer4;
+            if (cmbRiesgoLaboral.Text.ToLower() == "si")
+            {
+                buffer4 = salario * 0.2;
+            }
+            else { buffer4 = 0; }
 
             var newIncome = new IncomeCreateDto
             {
                 CntdHorasExtras = int.Parse(txtHorasExtras.Text),
-                Antiguedad = _calculosRepo.CalcularAntiguedad(antiguedad, salario),
+                Antiguedad = buffe1,
                 EmployeeID = int.Parse(txtIdEmpleado.Text),
-                SalarioExtraOrdinario = _calculosRepo.CalcularHorasextra(salario, horasextras),
+                SalarioExtraOrdinario = buffer2,
                 SalarioOrdinario = salario,
-                Nocturnidad = _calculosRepo.CalcularNocturnidad(horasNoctu, salario),
-                RiesgoLaboral = salario * 0.2,
+                Nocturnidad = buffer3,
+                RiesgoLaboral = buffer4,
                 AñosAntiguedad = int.Parse(txtAñosDeAntiguedad.Text),
-                CntdHorasNocturnas = int.Parse(txtHorasNocturnas.Text)
-                
+               
+              
+
+
+
             };
             try
             {
-
+                
+                
                 var sucess = await _apiClient.Incomes.CreateAsync(newIncome);
+              
                 MessageBox.Show("¡Ingreso agregado exitosamente!",
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputFields();
+                await LoadIncomesAsync();
+                var total = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text));
                 await LoadIncomesAsync();
             }
             catch (Exception ex)
@@ -83,9 +105,10 @@ namespace Payroll
         {
             txtAñosDeAntiguedad.Clear();
             txtHorasExtras.Clear();
-            txtHorasNocturnas.Clear();
+          cmbRiesgoLaboral.Items.Clear();
+            cmbNocturnidad.Items.Clear();
             txtIdEmpleado.Clear();
-            txtRiesgoLaboral.Clear();
+         
             txtSalario.Clear();
         }
 
@@ -97,11 +120,11 @@ namespace Payroll
            
               
                 double horasNocturnas = ((income.CntdHorasExtras * 30 * 8) / (income.SalarioOrdinario * 0.2));
-                txtAñosDeAntiguedad.Text = income.CntdDeAñosAntiguedad.ToString();
+                txtAñosDeAntiguedad.Text = income.AñosAntiguedad.ToString();
                 txtHorasExtras.Text = income.CntdHorasExtras.ToString();
-                txtHorasNocturnas.Text = income.CntdHorasNocturnas.ToString();
+               
                 txtIdEmpleado.Text = income.EmployeeID.ToString();
-                txtRiesgoLaboral.Text = income.RiesgoLaboral.ToString();
+             
                 txtSalario.Text = income.SalarioOrdinario.ToString();
             }
         }
@@ -154,7 +177,18 @@ namespace Payroll
                 int antiguedad = int.Parse(txtAñosDeAntiguedad.Text);
                 int salario = int.Parse(txtSalario.Text);
                 int horasextras = int.Parse(txtHorasExtras.Text);
-                int horasNoctu = int.Parse(txtHorasNocturnas.Text);
+                double buffer3;
+                if (cmbNocturnidad.Text.ToLower() == "si")
+                {
+                    buffer3 = salario * 0.2;
+                }
+                else { buffer3 = 0; }
+                double buffer4;
+                if (cmbRiesgoLaboral.Text.ToLower() == "si")
+                {
+                    buffer4 = salario * 0.2;
+                }
+                else { buffer4 = 0; }
                 var selectedIncomes = (IncomeDto)dgvIncomes.SelectedRows[0].DataBoundItem;
                 var updateIncomes = new IncomeUpdateDto
                 {
@@ -165,10 +199,10 @@ namespace Payroll
                     EmployeeID = int.Parse(txtIdEmpleado.Text),
                     SalarioExtraOrdinario = _calculosRepo.CalcularHorasextra(salario, horasextras),
                     SalarioOrdinario = salario,
-                    Nocturnidad = _calculosRepo.CalcularNocturnidad(horasNoctu, salario),
-                    RiesgoLaboral = salario * 0.2,
+                    Nocturnidad = buffer3,
+                    RiesgoLaboral = buffer4,
                     AñosAntiguedad = int.Parse(txtAñosDeAntiguedad.Text),
-                    CntdHorasNocturnas = int.Parse(txtHorasNocturnas.Text)
+                   
                     
 
 
@@ -178,12 +212,15 @@ namespace Payroll
                 {
                     var success =
                                 await _apiClient.Incomes.UpdateAsync(selectedIncomes.IncomeId, updateIncomes);
+                    
 
                     if (success)
                     {
                         MessageBox.Show("¡Ingreso actualizado exitosamente!",
                             "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearInputFields();
+                        await LoadIncomesAsync();
+                        var total = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text));
                         await LoadIncomesAsync();
                     }
                     else
