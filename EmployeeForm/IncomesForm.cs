@@ -75,12 +75,13 @@ namespace Payroll
                 Nocturnidad = buffer3,
                 RiesgoLaboral = buffer4,
                 AñosAntiguedad = int.Parse(txtAñosDeAntiguedad.Text),
-               
-              
+                TotalIncomes = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text))
 
 
 
-            };
+
+
+        };
             try
             {
                 
@@ -91,8 +92,7 @@ namespace Payroll
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputFields();
                 await LoadIncomesAsync();
-                var total = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text));
-                await LoadIncomesAsync();
+                
             }
             catch (Exception ex)
             {
@@ -122,7 +122,9 @@ namespace Payroll
                 double horasNocturnas = ((income.CntdHorasExtras * 30 * 8) / (income.SalarioOrdinario * 0.2));
                 txtAñosDeAntiguedad.Text = income.AñosAntiguedad.ToString();
                 txtHorasExtras.Text = income.CntdHorasExtras.ToString();
-               
+                cmbNocturnidad.Text = income.Nocturnidad.ToString();
+                cmbRiesgoLaboral.Text = income.RiesgoLaboral.ToString();
+                    
                 txtIdEmpleado.Text = income.EmployeeID.ToString();
                 
                 txtSalario.Text = income.SalarioOrdinario.ToString();
@@ -202,8 +204,9 @@ namespace Payroll
                     Nocturnidad = buffer3,
                     RiesgoLaboral = buffer4,
                     AñosAntiguedad = int.Parse(txtAñosDeAntiguedad.Text),
-                   
-                    
+                    TotalIncomes = await _apiClient.Incomes.CalculateTotal(int.Parse(txtIdEmpleado.Text))
+
+
 
 
                 };

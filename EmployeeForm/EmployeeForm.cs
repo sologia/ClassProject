@@ -82,6 +82,7 @@ namespace Payroll
                 SecondName = txtSecondNombre.Text,
                 Sexo = cmbSexo.Text,
                 Telefono = int.Parse(mskTelefono.Text)
+                
 
 
 
@@ -189,7 +190,8 @@ namespace Payroll
                     RUC = int.Parse(txtRUC.Text),
                     SecondName = txtSecondNombre.Text,
                     Sexo = cmbSexo.Text,
-                    Telefono = int.Parse(mskTelefono.Text)
+                    Telefono = int.Parse(mskTelefono.Text),
+                    SalarioNeto = await _apiClient.Employees.CalculateTotal(selectedEmployees.EmployeeID)
 
 
 
@@ -200,7 +202,7 @@ namespace Payroll
                 {
                     var success =
                                 await _apiClient.Employees.UpdateAsync(selectedEmployees.EmployeeID, updateEmployee);
-
+                    
 
                     if (success)
                     {
