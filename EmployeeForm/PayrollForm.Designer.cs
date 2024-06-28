@@ -104,6 +104,7 @@
             button3.TabIndex = 5;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label2
             // 

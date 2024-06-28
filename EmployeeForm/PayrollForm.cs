@@ -104,13 +104,13 @@ namespace Payroll
         {
             if (dgvPayroll.SelectedRows.Count > 0)
             {
-               
+
                 var selectedPayroll = (PayrollDto)dgvPayroll.SelectedRows[0].DataBoundItem;
-               
+
                 var updatePayrolls = new PayrollUpdateDto
                 {
 
-                    FechaPeriodo= DateOnly.Parse(dtpNomina.Text),
+                    FechaPeriodo = DateOnly.Parse(dtpNomina.Text),
                     PayrollId = selectedPayroll.PayrollId,
 
 
@@ -151,6 +151,47 @@ namespace Payroll
             else
             {
                 MessageBox.Show("Seleccione un nomina para actualizar.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            if (dgvPayroll.SelectedRows.Count > 0)
+            {
+                var selectedIncome = (PayrollDto)dgvPayroll.SelectedRows[0].DataBoundItem;
+                var result = MessageBox.Show($"¿Está seguro de que desea eliminar el " +
+                    $"Nomina con ID'{selectedIncome.PayrollId}'?", "Confirmación",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        var sucess =
+                            await _apiClient.Incomes.DeleteAsync(selectedIncome.PayrollId);
+
+                        if (sucess)
+                        {
+                            MessageBox.Show("¡Nomina eliminado exitosamente!", "¡Éxito!",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await LoadPayrollForm();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Error al eliminar el ingreso.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al eliminar el ingreso: {ex.Message}",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un ingreso para eliminar.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
