@@ -20,6 +20,7 @@ namespace PayrolAPI.Repository
         public async Task<Income> UpdateAsync(Income entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+            entity.TotalIncomes = await CalculateTotalIncomeAsync(entity.EmployeeID);
             await _context.SaveChangesAsync();
             return entity;
         }

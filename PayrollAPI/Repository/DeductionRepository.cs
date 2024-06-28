@@ -21,6 +21,7 @@ namespace PayrolAPI.Repository
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+            entity.TotalDeductions = await CalculateTotalDeductionAsync(entity.EmployeeID);
             return entity;
         }
         public async Task<bool> AddDeductionAsync(DeductionCreateDto entity)
