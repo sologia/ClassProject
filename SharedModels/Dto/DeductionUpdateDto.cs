@@ -13,6 +13,11 @@ namespace SharedModels.Dto
         public int DeductionID { get; set; }
         [Required]
         public int EmployeeID { get; set; }
-
+        [Required]
+        public double INSS { get; set; }
+        [Required]
+        public double IR { get; set; }
+        [Required]
+        public double TotalDeductions { get; set; }
     }
 }

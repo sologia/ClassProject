@@ -42,28 +42,31 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Stencil", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(111, 9);
+            label2.Location = new Point(139, 11);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(134, 33);
+            label2.Size = new Size(155, 39);
             label2.TabIndex = 9;
             label2.Text = "EGRESOS";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
             // mskID
             // 
-            mskID.Location = new Point(135, 53);
+            mskID.Location = new Point(169, 66);
+            mskID.Margin = new Padding(4);
             mskID.Mask = "000";
             mskID.Name = "mskID";
-            mskID.Size = new Size(26, 27);
+            mskID.Size = new Size(32, 31);
             mskID.TabIndex = 27;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Stencil", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(12, 57);
+            label9.Location = new Point(15, 71);
+            label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(117, 20);
+            label9.Size = new Size(143, 25);
             label9.TabIndex = 26;
             label9.Text = "ID Empleado";
             label9.TextAlign = ContentAlignment.TopCenter;
@@ -71,45 +74,54 @@
             // dgvEgresos
             // 
             dgvEgresos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEgresos.Location = new Point(10, 162);
+            dgvEgresos.Location = new Point(12, 202);
+            dgvEgresos.Margin = new Padding(4);
             dgvEgresos.Name = "dgvEgresos";
             dgvEgresos.ReadOnly = true;
             dgvEgresos.RowHeadersWidth = 51;
-            dgvEgresos.Size = new Size(332, 286);
+            dgvEgresos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEgresos.Size = new Size(415, 358);
             dgvEgresos.TabIndex = 28;
+            dgvEgresos.CellClick += dgvEgresos_CellClick;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(248, 109);
+            btnEliminar.Location = new Point(310, 136);
+            btnEliminar.Margin = new Padding(4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(118, 36);
             btnEliminar.TabIndex = 44;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(14, 109);
+            btnCrear.Location = new Point(18, 136);
+            btnCrear.Margin = new Padding(4);
             btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(94, 29);
+            btnCrear.Size = new Size(118, 36);
             btnCrear.TabIndex = 43;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(128, 109);
+            btnActualizar.Location = new Point(160, 136);
+            btnActualizar.Margin = new Padding(4);
             btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(97, 29);
+            btnActualizar.Size = new Size(121, 36);
             btnActualizar.TabIndex = 42;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // DeductionForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(356, 513);
+            ClientSize = new Size(445, 641);
             Controls.Add(btnEliminar);
             Controls.Add(btnCrear);
             Controls.Add(btnActualizar);
@@ -117,6 +129,7 @@
             Controls.Add(mskID);
             Controls.Add(label9);
             Controls.Add(label2);
+            Margin = new Padding(4);
             Name = "DeductionForm";
             Text = "DeductionForm";
             Load += DeductionForm_Load;

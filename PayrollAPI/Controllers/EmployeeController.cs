@@ -149,7 +149,7 @@ namespace PayrolAPI.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpGet("CalculateSalarioNeto/{employeeId}")]
+        [HttpGet("CalculateTotalEmployee/{employeeId}")]
         public async Task<IActionResult> CalculateNetSalary(int employeeId)
         {
 
@@ -224,6 +224,7 @@ namespace PayrolAPI.Controllers
                     "Error interno del servidor al actualizar al empleado.");
             }
         }
+
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

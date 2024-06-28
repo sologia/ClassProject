@@ -13,5 +13,6 @@ namespace Payroll
         Task<T> CreateAsync(object dto);
         Task<bool> UpdateAsync(int id, object dto);
         Task<bool> DeleteAsync(int id);
+        Task<double> CalculateTotal(int id);  
     }
 }

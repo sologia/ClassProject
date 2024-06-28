@@ -44,7 +44,7 @@ namespace PayrolAPI.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al agregar ingreso: {ex.Message}");
+                Console.WriteLine($"Error al agregar egreso: {ex.Message}");
                 return false;
             }
         }

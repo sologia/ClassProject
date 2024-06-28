@@ -6,6 +6,7 @@ using PayrolAPI.Repository.IRepository;
 using SharedModels.Dto;
 using SharedModels;
 using PayrolAPI.Repository;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace PayrolAPI.Controllers
 {
@@ -145,7 +146,7 @@ namespace PayrolAPI.Controllers
                     "Error interno del servidor al crear un nuevo egreso.");
             }
         }
-        [HttpGet("CalculateTotalDeductions/{employeeId}")]
+        [HttpGet("CalculateTotalDeduction/{employeeId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -157,7 +158,15 @@ namespace PayrolAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var employeeExists = await _employeeRepo
+                    .ExistsAsync(s => s.EmployeeID ==employeeId);
 
+            if (!employeeExists)
+            {
+                _logger.LogWarning($"El Empleado con ID '{employeeId}' no existe.");
+                ModelState.AddModelError("EmpleadoNoExiste", "¡El empleado no existe!");
+                return BadRequest(ModelState);
+            }
             try
             {
                 var result = await _deductionRepo.CalculateTotalDeductionAsync(employeeId);

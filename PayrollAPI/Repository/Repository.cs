@@ -70,9 +70,9 @@ namespace PayrolAPI.Repository
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await dbSet.FindAsync();
+            return await dbSet.FindAsync(id);
         }
-
+       
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

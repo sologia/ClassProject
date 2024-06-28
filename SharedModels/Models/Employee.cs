@@ -27,7 +27,7 @@ namespace SharedModels
 
         public DateOnly Contratacion { get; set; }
         public DateOnly FinContratacion { get; set; }
-        public int Salario { get; set; }
+        public double Salario { get; set; }
         public bool Activo { get; set; }
         
         public double SalarioNeto {  get; set; }

@@ -152,6 +152,15 @@ namespace PayrolAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CalculateTotalIncome(int employeeId)
         {
+            var employeeExists = await _employeeRepo
+                   .ExistsAsync(s => s.EmployeeID == employeeId);
+
+            if (!employeeExists)
+            {
+                _logger.LogWarning($"El Empleado con ID '{employeeId}' no existe.");
+                ModelState.AddModelError("EmpleadoNoExiste", "¡El empleado no existe!");
+                return BadRequest(ModelState);
+            }
             try
             {
                 var totalIncome = await _incomeRepo.CalculateTotalIncomeAsync(employeeId);

@@ -2,16 +2,29 @@
 
 namespace PayrolAPI.Repository
 {
-    public class CalculosRepository : CalculosIRepository
+    public class CalculosRepository : ICalculosIRepository
     {
         public double CalcularAntiguedad(int Antiguedad, Double Salariobasico)
         {
-            double buffer;
+            double buffer ;
+            if (Antiguedad <= 3 )
+            {
+                buffer = Salariobasico * Antiguedad;
+                return buffer;
+            }
 
+                if(Antiguedad > 3)
+                     {
+                     if (Antiguedad > 5)
+                         {
+                    buffer = (Salariobasico / 30) * 20 * 5;
+                    return buffer;
 
-            buffer = ((Antiguedad) / 100) * Salariobasico;
-
-            return buffer;
+                         }
+                buffer = (Salariobasico / 30) * 20 * Antiguedad;
+                return buffer;
+            }
+            return 1;
         }
 
         public double CalcularDeducciones(double INSS, double IR)
@@ -127,8 +140,8 @@ namespace PayrolAPI.Repository
         }
         public double CalcularNocturnidad(int cntdHoras, double Salariobasico)
         {
-            double buffer = ((Salariobasico) / 30) / 8;
-            double Nocturnidad = (buffer * cntdHoras) * 0.2;
+            double buffer = ((Salariobasico*0.2) / 30) ;
+            double Nocturnidad = (buffer * cntdHoras) ;
             return Nocturnidad;
         }
 

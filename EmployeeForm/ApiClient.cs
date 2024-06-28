@@ -12,10 +12,10 @@ namespace Payroll
     public class ApiClient
     {
         private readonly HttpClient _httpClient;
-        public IRepository<EmployesDto> Employees { get; }
-        public IRepository<IncomeDto> Incomes { get; }
-        public IRepository<DeductionDto> Deductions { get; }
-        public IRepository<PayrollDto> Payrolls { get; }
+        public IRepository<EmployesDto> Employees { get; set; }
+        public IRepository<IncomeDto> Incomes { get; set; }
+        public IRepository<DeductionDto> Deductions { get; set; }
+        public IRepository<PayrollDto> Payrolls { get; set; }
    
 
         public ApiClient()
